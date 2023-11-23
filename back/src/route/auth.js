@@ -52,6 +52,10 @@ router.post('/signup', function (req, res) {
   }
 
   try {
+		console.log('------------------')
+		console.log('Email:', email);
+		console.log('------------------')
+		
     const user = User.getByEmail(email)
 
     if (user) {

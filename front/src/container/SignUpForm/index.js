@@ -1,13 +1,112 @@
 import "./index.css"
 
 
+// import React, { useState } from 'react';
+
+// const SignUpForm = ({ onUsernameChange, onSubmit }) => {
+//   const [email, setEmail] = useState('');
+//   const [password, setPassword] = useState('');
+//   const [showPassword, setShowPassword] = useState(false);
+
+//   const handleSignUp = (e) => {
+//     e.preventDefault();
+//     onSubmit();
+//   };
+
+//   const togglePasswordVisibility = () => {
+//     setShowPassword(!showPassword);
+//   };
+
+//   return (
+//     <form onSubmit={handleSignUp}>
+//       <div className='signUpForm__block'>
+//         <label className="signUpForm__email">
+//           <p className="signUpForm__text">Email:</p>
+//           <input
+//             className="signUpForm__layout signUpForm__input--email"
+//             type="email"
+//             value={email}
+//             onChange={(e) => setEmail(e.target.value)}
+//             required
+//           />
+//         </label>
+
+//         <label className="signUpForm__password">
+//           <p className="signUpForm__text">Password:</p>
+//           <div className={`password-input-wrapper ${showPassword ? 'show' : 'hide'}`}>
+//             <input
+//               className="signUpForm__layout signUpForm__input--password"
+//               type={showPassword ? 'text' : 'password'}
+//               value={password}
+//               onChange={(e) => setPassword(e.target.value)}
+//               required
+//             />
+//             <span
+//               onClick={togglePasswordVisibility}
+//               className={`signUpForm__icon toggle-password-button__${showPassword ? 'show' : 'hide'}`}
+//               role="button"
+//             >
+//               {showPassword ? 'Сховати' : 'Показати'}
+//             </span>
+//           </div>
+//         </label>
+
+//         <button type="submit" className="signUpForm__button signUpForm__button--text">Sign Up</button>
+//       </div>
+//     </form>
+//   );
+// };
+
+// export default SignUpForm;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 import React, { useState } from 'react';
 import { useAuth } from '../../component/AuthContextProvider';
 
 const SignUpForm = ({ history }) => {
-	const { dispatch } = useAuth();
+	const  dispatch  = useAuth();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -35,6 +134,9 @@ const SignUpForm = ({ history }) => {
       } else {
         // Обробка помилок реєстрації
         console.log('Failed to sign up');
+				console.log('------------------')
+				const errorData = await response.json();
+				console.error('Failed to sign up. Server error:', errorData);
       }
     } catch (error) {
       console.error('Error during sign up:', error);

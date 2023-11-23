@@ -31,7 +31,7 @@ const SignUpPage = () => {
 				setUserExistsMessage('');
 	
 				try {
-					// Відправка запиту на сторінку signup-confirm
+					// Відправка запиту на сторінку signup
 					const response = await fetch('http://localhost:4000/signup', {
 						method: 'POST', 
 						headers: {
