@@ -1,7 +1,7 @@
 import "./index.css";
 
 
-
+// import { useHistory } from 'react-router-dom';
 import React, { Component } from 'react';
 import BackButton from '../back-button';
 import { Form, REG_EXP_EMAIL, REG_EXP_PASSWORD } from '../../script/form';
@@ -54,7 +54,10 @@ class SigninPage extends Component {
     }
   };
 
+	
+
   submit = async () => {
+
     try {
       const { formData } = this.state;
 
@@ -69,16 +72,31 @@ class SigninPage extends Component {
         }),
       });
 
-      const data = await response.json();
+     
 
+			// if (response.ok) {
+			// 	const data = await response.json();
+			// 	// Тут можна додатково перевірити вміст відповіді (data) на предмет помилок чи додаткової інформації.
+			// 	if (data.success) {
+			// 		// Успішно виконана бізнес-логіка
+			// 		saveSession(data.session);
+			// 		window.location.assign('http://localhost:3000/balance');
+			// 	} else {
+			// 		console.error('Помилка входу:', data.message);
+			// 	}
+			// } else {
+			// 	console.error('Помилка від сервера. HTTP-статус:', response.status);
+			// }
+
+
+			const data = await response.json();
       if (response.ok) {
         saveSession(data.session);
 
-				// this.props.history.push('/confirmation-page');
-        // window.location.assign('/recovery');
+				
 
-				const navigate = this.props.navigate;
-        navigate('/balance');
+				window.location.assign('http://localhost:3000/balance');
+ 
       } else {
         console.error('Помилка входу:', data.message);
       }
@@ -146,7 +164,6 @@ class SigninPage extends Component {
                   className={`signInForm__icon toggle-password-button__${showPassword ? 'show' : 'hide'}`}
                   role="button"
                 >
-                  {/* Ваші SVG-зображення для приховання і показу паролю */}
                   {showPassword ?  'Hide' : 'Show'}
                 </span>
               </div>

@@ -4,7 +4,7 @@ const SettingsPage = () => {
   // State для збереження даних користувача або налаштувань
   const [userSettings, setUserSettings] = useState({
     // Додайте тут поля налаштувань, наприклад:
-    // username: 'JohnDoe',
+    // email: 'JohnDoe',
     // email: 'john.doe@example.com',
     // інші налаштування...
   });
@@ -31,13 +31,13 @@ const SettingsPage = () => {
       <h2>Settings</h2>
       {/* Форма для відображення та редагування налаштувань */}
       <form onSubmit={handleSubmit}>
-        {/* Приклад поля для редагування username */}
+        {/* Приклад поля для редагування email */}
         <label>
           Username:
           <input
             type="text"
-            name="username"
-            value={userSettings.username || ''}
+            name="email"
+            value={userSettings.email || ''}
             onChange={handleChange}
           />
         </label>

@@ -12,17 +12,6 @@ class User {
     this.isConfirm = false
   }
  
-  static create(data) {
-    const user = new User(data)
-
-    console.log(user)
-
-    this.#list.push(user)
-
-    console.log(this.#list)
-
-    return user
-  }
 
   static getByEmail(email) {
     return (
@@ -32,9 +21,29 @@ class User {
       ) || null
     )
   }
+
+	// ==========================
+	static create(data) {
+		const existUser = this.getByEmail(data.email);
+	
+		if (existUser) {
+			console.log("Користувач із цією електронною адресою вже існує.", ':path = back/class/user.js.30');
+			return existUser;
+		}
+	
+		const user = new User(data);
+		this.#list.push(user);
+	
+		console.log(this.#list, ':path = back/class/user.js,37');
+
+	
+		return user;
+	}
   
 }
+
 
 module.exports = {
   User,
 }
+

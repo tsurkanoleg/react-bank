@@ -1,13 +1,26 @@
 import "./index.css";
 
-import { useAuth } from '../../component/AuthContextProvider';
+
+
 import React from 'react';
-import { Route, Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const PrivateRoute = ({ element }) => {
-  const { state } = useAuth();
+  // const token = localStorage.getItem('sessionAuth'); 
 
-  return state.token ? element : <Navigate to="/signin" />;
+	const navigate = useNavigate();
+
+  if (!window.session.token) {
+   	navigate('/'); // Перенаправлення на головну сторінку, можливо, змініть шлях відповідно до ваших потреб
+    return null; // або інша логіка для відображення сторінки з помилкою або логіном
+  } else {
+		navigate('/signup-confirm')
+		
+	}
+
+  // Якщо токен існує, повертайте переданий елемент Route
+  return element;
 };
 
 export default PrivateRoute;
+

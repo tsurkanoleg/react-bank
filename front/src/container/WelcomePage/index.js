@@ -4,6 +4,21 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const WelcomePage = () => {
+
+	document.addEventListener("DOMContentLoaded", () => {
+		if (window.sessioin) {
+			const  { user } = window.sessioin
+
+			if (user.isConfirm) {
+				window.location.assign('/balance')
+			} else {
+				window.location.assign('/signup-confirm')
+			}
+		} else {
+			window.location.assign('/signup')
+		}
+	})
+
   return (
     <div className="welcome__page">
 

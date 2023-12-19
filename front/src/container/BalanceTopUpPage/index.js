@@ -1,6 +1,6 @@
 // BalanceTopUpPage.js
 import React from 'react';
-import BalanceTopUpForm from './BalanceTopUpForm';
+import BalanceTopUpForm from '../../component/BalanceTopUpForm';
 
 const BalanceTopUpPage = () => {
   const handleTopUp = (data) => {
