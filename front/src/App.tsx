@@ -1,23 +1,24 @@
 import { Routes, Route } from 'react-router-dom';
-
-
-import WellcomePage from './container/WelcomePage';
-import SignupPage from '../src/component/SignupPage';
-
-import SignUpPage from '../src/container/SignUpPage'
-
-import RecoveryPage from '../src/component/RecoveryPage';
-
-import SigninPage from '../src/component/SignInPage';
-
-
-
+import { loadSession } from './script/session'
 
 
 import AuthRoute from '../src/component/AuthRoute';
 import PrivateRoute from '../src/component/PrivateRoute';
 
+
+import WellcomePage from './container/WelcomePage';
+import SignupPage from '../src/component/SignupPage';
+
 import SignupConfirmPage from '../src/component/SignupConfirmPage';
+
+
+
+import SigninPage from '../src/component/SignInPage';
+
+
+import RecoveryPage from '../src/component/RecoveryPage';
+
+
 
 
 
@@ -28,7 +29,7 @@ import SettingsPage from '../src/container/SettingsPage';
 import RecivePage from '../src/page/RecivePage';
 
 import SendPage from '../src/page/SendPage.js';
-import TransactionPage from '../src/component/TransactionPage';
+import TransactionPage from './component/TransactionPage';
 
 
 import  NotificationPage  from '../src/page/NotificationPage';
@@ -36,6 +37,7 @@ import  NotificationPage  from '../src/page/NotificationPage';
 import Error from '../src/component/Error';
 
 
+loadSession();
 
 const App = () => {
 	
@@ -50,19 +52,22 @@ const App = () => {
 					</AuthRoute>
 				)}
 			/>
-			<Route
-				path="/signup"
-				element={(
-					<AuthRoute>
-						<SignupPage	/>
-					</AuthRoute>
-				)}
-			/>
+			
 			<Route
 				path="/signin"
 				element={(
 					<AuthRoute>
 						<SigninPage />
+					</AuthRoute>
+				)}
+			/>
+			<Route
+				path="/signup"
+				element={(
+					<AuthRoute>
+						<SignupPage	
+							history="/signup"
+						/>
 					</AuthRoute>
 				)}
 			/>

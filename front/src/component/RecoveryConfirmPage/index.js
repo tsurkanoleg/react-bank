@@ -110,7 +110,7 @@ class RecoveryConfirmForm extends Component {
       });
 
       try {
-        const response = await fetch('http://localhost:4000/signup-confirm', {
+        const response = await fetch('http://localhost:4000/recovery-confirm', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

@@ -13,7 +13,7 @@ class Session {
   static generateCode = () => {
     const length = 6
     const characters =
-      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
 
     let result = ''
 
@@ -46,5 +46,4 @@ class Session {
 module.exports = {
   Session,
 }
-
-console.log(Session.generateCode())
+console.log(Session.generateCode(), ':path = back/class/Session.js,49')

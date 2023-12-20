@@ -8,7 +8,10 @@ import App from './App';
 
 import "./normalize.css";
 import "./index.css";
+import { loadSession } from './script/session'
 
+
+loadSession()
 
 ReactDOM.render(
   <React.StrictMode>
@@ -20,11 +23,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
-
-
-
-// const root = ReactDOM.createRoot(
-//   document.getElementById("root") as HTMLElement
-// );
-
-// root.render(<App />);
