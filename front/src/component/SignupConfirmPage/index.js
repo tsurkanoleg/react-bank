@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../../component/AuthContextProvider';
 import BackButton from '../back-button';
 import { useNavigate } from 'react-router-dom';
+import { getTokenSession } from '../../script/session';
 
 const SignUpConfirmPage = () => {
   const { dispatch } = useAuth();
@@ -13,8 +14,8 @@ const SignUpConfirmPage = () => {
   const navigate = useNavigate();
 
   const handleConfirm = async (e) => {
-    e.preventDefault();
-		const token = window.session.token;
+    e.preventDefault();		
+		const token = getTokenSession(); 
 
     try {
       const response = await fetch(`http://localhost:4000/signup-confirm`, {
@@ -25,8 +26,11 @@ const SignUpConfirmPage = () => {
         body: JSON.stringify({ code, token }),
       });
 
+			
+
       if (response.ok) {
         dispatch({ type: 'LOGIN', payload: { confirm: true } });
+				
 				navigate('/balance');
       } else {
 				const errorData = await response.json();

@@ -16,8 +16,7 @@ class User {
   static getByEmail(email) {
     return (
       this.#list.find(
-        (user) =>
-          user.email === String(email).toLowerCase(),
+        (user) => user.email === String(email).toLowerCase(),
       ) || null
     )
   }
@@ -27,19 +26,19 @@ class User {
 		const existUser = this.getByEmail(data.email);
 	
 		if (existUser) {
-			console.log("Користувач із цією електронною адресою вже існує.", ':path = back/class/user.js.30');
+			// console.log("Користувач із цією електронною адресою вже існує.", ':path = back/class/user.js.30');
 			return existUser;
 		}
 	
 		const user = new User(data);
 		this.#list.push(user);
 	
-		console.log(this.#list, ':path = back/class/user.js,37');
+		// console.log(this.#list, ':path = back/class/user.js,36');
 
-	
+		// console.log(user, ':path = back/class/user.js,38');
+
 		return user;
-	}
-  
+	}  
 }
 
 

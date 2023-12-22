@@ -4,53 +4,106 @@ class Confirm {
   constructor(data) {
     this.code = Confirm.generateCode()
     this.data = data
-		this.email = data.email;
+		this.email = data.email
   }
 
   static generateCode = () => Math.floor(Math.random() * 9000) + 1000
 
 	static create = (data) => {
-    const newConfirm = new Confirm(data);
-    this.#list.push(newConfirm);
-
-    setTimeout(() => {
-			console.log('Before delete:', this.#list);
-			Confirm.delete(newConfirm.code)
-			console.log('After delete:', this.#list);
-    }, 24 * 60 * 60 * 1000); // 24 години у мілісекундах
-
-    console.log(this.#list, ':path = back/class/confirm.js,22');
-
-    return newConfirm.code; 
-  }
-
-	static delete = (code) => {
-		console.log('Before delete:', this.#list);
-		const length = this.#list.length
+		const confirmation = new Confirm(data);
+		this.#list.push(confirmation);	
 	
-		this.#list = this.#list.filter(
-			(item) => item.code !== code,
-		)
+		console.log(this.#list, ':path = back/class/confirm.js,30');
 	
-		console.log('After delete:', this.#list);
-		return length > this.#list.length
+		return confirmation.code;
 	}
 	
 
-  static getData = (code) => {
-		console.log('List contents:==============', this.#list);
+
+  static getData = (code) => {		
     const obj = this.#list.find(
       (item) => item.code === code,
     )
 
-		console.log(obj, ':path = back/class/confirm.js,46')
-
-		return (
-			obj ? obj.email : null
-		); 
+    return obj ? obj.data : null
   }
 }
 
 module.exports = {
   Confirm,
 }
+
+
+
+
+
+
+// class Confirm {
+//   static #list = []
+
+//   constructor(data) {
+//     this.code = Confirm.generateCode()
+//     this.data = data
+//   }
+
+//   static generateCode = () => Math.floor(Math.random() * 9000) + 1000
+
+//   // static create = (data) => {
+//   //   this.#list.push(new Confirm(data))
+
+//   //   setTimeout(() => {
+//   //     this.delete(code)
+//   //   }, 24 * 60 * 60 * 1000) // 24 години у мілісекундах
+
+//   //   console.log(this.#list, ':path = back/class/confirm.js,19')
+//   // }
+
+// 	static create = (data) => {
+// 		const confirmation = new Confirm(data);
+// 		this.#list.push(confirmation);
+	
+// 		// setTimeout(() => {
+// 		// 	this.delete(confirmation.code);
+// 		// }, 24 * 60 * 60 * 1000); // 24 години у мілісекундах
+	
+// 		console.log(this.#list, ':path = back/class/confirm.js,30');
+	
+// 		return confirmation.code;
+// 	}
+	
+
+//   // static delete = (code) => {
+//   //   // const length = this.#list
+// 	// 	const length = this.#list.length
+
+//   //   this.#list = this.#list.filter(
+//   //     (item) => item.code !== code,
+//   //   )
+
+//   //   return length > this.#list.length
+//   // }
+
+//   static getData = (code) => {
+		
+//     const obj = this.#list.find(
+//       (item) => item.code === code,
+//     )
+
+//     return obj ? obj.data.email : null
+//   }
+// }
+
+// module.exports = {
+//   Confirm,
+// }
+
+
+
+
+
+
+
+
+
+
+

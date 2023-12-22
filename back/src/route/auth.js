@@ -47,7 +47,7 @@ router.get('/signup', function (req, res) {
 router.post('/signup', function (req, res) {
   const { email, password } = req.body
 
-  console.log(req.body,':path = back/route/auth.js,50')
+  console.log(req.body,':path = back/route/auth.js,50 OK')
 
   if (!email || !password) {
     return res.status(400).json({
@@ -56,25 +56,27 @@ router.post('/signup', function (req, res) {
   }
 
   try {
-		// console.log('Email:', email, 'password', password ,':path = back/route/auth.js,59');
+		// console.log('Email:', email, 'password:', password ,':path = back/route/auth.js,59');
 		
     const user = User.getByEmail(email)
-		console.log(user,"back/route/auth.js,62")
+
 
     if (user) {
       return res.status(400).json({
         message: 'Помилка. Такий користувач вже існує',
       })
     }
-
+		
 		const newUser = User.create({ email, password})
 		console.log(newUser, '71')
 
 		const session = Session.create(newUser)
-		console.log(session, '74')  
+		
+		console.log(session, '75')  
 
+		
 		const token = Confirm.create({ email: newUser.email })		
-		// console.log(token, '77')     
+		console.log(token, '79')     // код не прив'язаний до сесії?
 
     return res.status(200).json({
       message: 'Користувач успішно зареєстрованний',
@@ -88,16 +90,18 @@ router.post('/signup', function (req, res) {
   }
 })
 
-
 // ===========================================================
 
 // ↙️ тут вводимо шлях (PATH) до сторінки
 router.get('/signup-confirm', function (req, res) {
-  const { renew, email } = req.query
+  // const { renew, email } = req.query
 
-  if (renew) {
-    Confirm.create(email)
-  }
+  // if (renew) {
+  //   Confirm.create(email)
+  // }
+
+	const { email } = req.query
+	Confirm.create(email)
 
   // res.render генерує нам HTML сторінку
 
@@ -113,40 +117,55 @@ router.get('/signup-confirm', function (req, res) {
     // ... сюди можна далі продовжувати додавати потрібні технічні дані, які будуть використовуватися в layout
 
     // вказуємо дані,
-    data: {},
+    data: {
+			email: email,
+		},
   })
   // ↑↑ сюди вводимо JSON дані
 })
 
 router.post('/signup-confirm', function (req, res) {
-  const { code, token } = req.body
-	console.log('code:',code, 'token:', token, ':path = back/route/auth.js,123');
+  const { code, token } = req.body	
+		
+	console.log(req.body, ':path = back/route/auth.js,130');
 
-  if (!code || !token) {
-		console.log(req.body, ':path = back/route/auth.js,124');
-    return res.status(400).json({
-      message: "Помилка. Обов'язкові поля відсутні",
-    })
-  }
+	if (!code || !token) {		
+		return res.status(400).json({
+			message: "Помилка. Обов'язкові поля відсутні",
+		})
+	}
 
-  try {
+  try {	
+		if(!code) {
+			return res.status(400).json({
+				message: 'Код не існує(:path = back/route/auth.js,141)',
+			})
+		}	else {
+			console.log(code, 'path = back/route/auth.js,144')
+		}
+
     const session = Session.get(token)
 
     if (!session) {
       return res.status(400).json({
         message: 'Помилка. Ви не увійшли в аккаунт',
       })
-    }
+    } else {
+			console.log(session, ':path = back/route/auth.js,154')
+		}
 
-    const email = Confirm.getData(code)
-		
-		console.log(email, 'код підтвердження', ':path = back/route/auth.js,143')
+    const email = Confirm.getData(code)		
 
-    if (!email) {
-      return res.status(400).json({
-        message: 'Код не існує',
+		if(!email) {
+			console.log(email, ':path = back/route/auth.js,160')
+			return res.status(400).json({
+        message: 'Код не існує:path = back/route/auth.js,162)',
       })
-    }
+		} else {
+			console.log(email, ':path = back/route/auth.js,165')
+		}
+		
+		console.log(email, 'код підтвердження', ':path = back/route/auth.js,168')
 
     if (email !== session.user.email) {
       return res.status(400).json({
@@ -265,7 +284,7 @@ router.post('/recovery-confirm', function (req, res) {
 
     if (!email) {
       return res.status(400).json({
-        message: 'Код не існує',
+        message: 'Код не існує(recovery)',
       })
     }
 
@@ -356,6 +375,17 @@ router.post('/signin', function (req, res) {
     })
   }
 })
+
+
+
+
+
+
+
+
+
+
+
 
 // Підключаємо роутер до бек-енду
 module.exports = router

@@ -7,7 +7,7 @@ class Session {
       email: user.email,
       isConfirm: user.isConfirm,
       id: user.id,
-    }
+    }		
   }
 
   static generateCode = () => {
@@ -22,12 +22,16 @@ class Session {
         Math.random() * characters.length,
       )
       result += characters[randomIndex]
-    }
+    }	
 
+		// console.log(result,':path = back/class/Session.js,27')
+		
     return result
   }
 
   static create = (user) => {
+
+
     const session = new Session(user)
 
     this.#list.push(session)
@@ -46,4 +50,3 @@ class Session {
 module.exports = {
   Session,
 }
-console.log(Session.generateCode(), ':path = back/class/Session.js,49')
