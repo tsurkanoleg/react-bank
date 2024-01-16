@@ -7,6 +7,7 @@ const AuthContext = createContext();
 const initialState = {
   token: null,
   user: null,
+	isConfirm: false, 
 };
 
 const actionTypes = {
@@ -21,6 +22,7 @@ const authReducer = (state, action) => {
         ...state,
         token: action.payload.token,
         user: action.payload.user,
+				isConfirm: true,
       };
     case actionTypes.LOGOUT:
       return {
@@ -33,11 +35,11 @@ const authReducer = (state, action) => {
   }
 };
 
-export const AuthContextProvider = ({ children }) => {
+const AuthContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
-  const login = (token, user) => {
-    dispatch({ type: actionTypes.LOGIN, payload: { token, user } });
+  const login = (token, user, isConfirm) => {
+    dispatch({ type: actionTypes.LOGIN, payload: { token, user, isConfirm } });
   };
 
   const logout = () => {
@@ -59,5 +61,5 @@ const useAuth = () => {
 	return context;
 };
 
-export { actionTypes, useAuth };
+export { actionTypes, useAuth, AuthContextProvider };
 

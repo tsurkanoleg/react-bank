@@ -1,0 +1,94 @@
+
+.send__page {
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+}
+
+
+.send__bord {
+	display: flex;
+	padding: 20px 0 0 20px;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+}
+
+.send__title {
+	color:  #121212;
+	font-family: Jost;
+	font-size: 24px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 100%; 
+}
+
+.send__block{
+	padding: 20px;
+
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 20px;
+}
+
+
+.send__item {	
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.send__text {
+	color: #1D1D1F;
+	font-family: Jost;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 100%; 
+}
+
+.send__input {
+	display: flex;
+	
+	align-items: flex-start;
+	gap: 16px;
+	align-self: stretch;	
+
+	border-radius: 12px;
+	border: 1px solid #775CE5;
+	width: 100%;
+	padding: 20px 16px;
+}
+
+.send__password {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 8px;
+	align-self: stretch;
+}
+
+.send__button {
+	display: flex;
+	width: 353px;
+	padding: 20px 140px;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+
+	border-radius: 12px;
+	background:  #775CE5;
+}
+
+.send__button--text {
+	color: #FFF;
+	text-align: center;
+	font-family: Jost;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 100%; 
+}
+

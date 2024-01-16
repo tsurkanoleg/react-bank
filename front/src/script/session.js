@@ -13,7 +13,9 @@ export const saveSession = (session) => {
 
 export const loadSession = () => {
   try {
-    const session = JSON.parse(localStorage.getItem(SESSION_KEY));
+    // const session ? JSON.parse(localStorage.getItem(SESSION_KEY));
+		const session = localStorage.getItem(SESSION_KEY) ? JSON.parse(localStorage.getItem(SESSION_KEY)) : JSON.parse(window.session);
+
 
     if (session) {
       window.session = session;
@@ -48,3 +50,13 @@ export const getSession = () => {
     return null;
   }
 };
+
+export const deleteSession = () => {
+	try {
+		localStorage.removeItem(SESSION_KEY);
+    window.session = null;
+  } catch (er) {
+    console.log(er);
+    return null;
+  }
+}

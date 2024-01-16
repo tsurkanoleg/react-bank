@@ -11,7 +11,6 @@ class User {
     this.password = String(password)
     this.isConfirm = false
   }
- 
 
   static getByEmail(email) {
     return (
@@ -21,7 +20,6 @@ class User {
     )
   }
 
-	// ==========================
 	static create(data) {
 		const existUser = this.getByEmail(data.email);
 	

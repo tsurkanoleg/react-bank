@@ -1,0 +1,96 @@
+
+
+.recovery__page {
+	display: flex;
+	flex-direction: column;
+	gap: 54px;
+}
+
+.recovery__top {
+	padding: 8px 0 0 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+}
+
+.recovery__bord {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 12px;
+}
+
+.recovery__title {
+	color:  #121212;
+	font-family: Jost;
+	font-size: 24px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 100%; 
+}
+
+.recovery__description{
+	color:  #939199;
+	text-align: center;
+	font-family: Jost;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 100%;
+}
+
+
+.recovery__layout {
+	display: flex;
+	
+	align-items: flex-start;
+	gap: 16px;
+	align-self: stretch;
+	
+}
+
+.recovery__email {
+
+	padding: 0 5%;
+
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 8px;
+	align-self: stretch;
+
+}
+
+.recovery__input--email {
+	padding: 20px 16px;
+
+	border-radius: 12px;
+	border: 1px solid #775CE5;
+}
+
+
+.recovery__button {
+
+	margin-left: 5%;
+
+	display: flex;
+	width: 353px;
+	padding: 20px 140px;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+
+	border-radius: 12px;
+	background:  #775CE5;
+}
+
+.recovery__button--text {
+	color: #FFF;
+	text-align: center;
+	font-family: Jost;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 100%; 
+	white-space: nowrap;
+}

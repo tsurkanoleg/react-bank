@@ -4,9 +4,9 @@ class Session {
   constructor(user) {
     this.token = Session.generateCode()
     this.user = {
+			id: user.id,
       email: user.email,
-      isConfirm: user.isConfirm,
-      id: user.id,
+      isConfirm: user.isConfirm,      
     }		
   }
 

@@ -1,5 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap');
+
+
 :root {
 	background-color: black;
+	font-family: Jost;	
 }
 
 html {
@@ -24,5 +28,5 @@ body {
 
 	width: 393px;
 	height: 852px;
-	border-radius: 24px;
+	border-radius: 24px !important; 
 }

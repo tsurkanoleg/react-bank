@@ -1,45 +1,56 @@
 import "./index.css";
 
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link,  } from 'react-router-dom';
 
 const WelcomePage = () => {
-
-	document.addEventListener("DOMContentLoaded", () => {
-		if (window.sessioin) {
-			const  { user } = window.sessioin
-
-			if (user.isConfirm) {
-				window.location.assign('/balance')
-			} else {
-				window.location.assign('/signup-confirm')
-			}
-		} else {
-			window.location.assign('/signup')
-		}
-	})
+	useEffect(() => {
+    document.addEventListener("DOMContentLoaded", () => {
+			const token = window.session.token
+			const confirm = window.session.user.isConfirm;
+			
+      if (token) {  
+        if (confirm === true) {
+          window.location.assign('/balance');
+        } else {
+          window.location.assign('/signup-confirm');
+        }
+      } else {
+        window.location.assign('/');
+      }
+    });
+  }, []);
 
   return (
     <div className="welcome__page">
 
 				<div className="welcome__top">
 					<div className="welcome__text">
-						<h2 className="welcome__title">Hello!</h2>
-						<p className="welcome__description">Welcome to bank app</p>
+						<div></div>
+						<div>
+							<h2 className="welcome__title">Hello!</h2>
+							<p className="welcome__description">Welcome to bank app</p>
+						</div>
+						<div></div>
 					</div>
+
 					<div className="image__welcome">
-						<img src="/png/money.png" alt="money" />
+						<img src="/png/money.png" alt="money" className="image__welcom--money" />
 					</div>
 				</div>
 
-				<div>
+				<div className="welcome__bottom">
 					<div className="welcome__button--block">
 						<Link to="/signup" className="welcome__button welcome__button--up">Sign Up</Link>
 						<Link to="/signin" className="welcome__button welcome__button--in">Sign In</Link>
 					</div>
 				</div>
 
+				
+
     </div>
+
+		
   );
 };
 
