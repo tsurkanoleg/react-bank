@@ -5,6 +5,10 @@ import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import BackButton from "../../component/back-button";
+import Field from "../../component/Field";
+import Button from "../../component/Button"
+import Header from '../../component/Header'
+
 
 const SendPage = () => {
 
@@ -39,7 +43,7 @@ const SendPage = () => {
 
 
 			if(res.ok) {
-				window.location.assign(data.redirectUrl)
+				navigate(data.redirectUrl)
 			} else {
         console.error('Failed to receive amount:', data.message, 'path: front/component/receive.41');
 			}
@@ -50,42 +54,35 @@ const SendPage = () => {
   };
 
   return (
-    <div className='send__page'>
+    <div className='send__page'>			
+            
+			<header className="send__header">
+				<BackButton />					
+				<Header	text='Send'	/>
+				<div style={{width: '24px'}}></div>
+			</header>      
 
-      <div className="send__top">        
-        <div className="send__bord">
-					<BackButton />
-					<h2 className="send__title">Send</h2>
-					<div></div>
-        </div>
-      </div>
+		  <form onSubmit={handleSubmit} className='send__block'>  
+				<Field
+					text = 'Email'
+					type = 'email'
+					placeholder="Email"
+					value={email}
+					onChange={handleUsernameChange}		
+				/>
 
-		  <form onSubmit={handleSubmit}>
-        <div className='send__block'>
-          <label className="send__item">
-            <p className="send__text">Email</p>
-            <input
-              className="send__input"
-              type="email"
-              value={email}
-              onChange={handleUsernameChange}
-              required
-            />
-          </label>
+				<Field
+					text = 'Sum'
+					type = 'number'
+					placeholder="Sum"
+					value={amountSend}
+					onChange={handleAmountChange}
+				/>         
 
-          <label className="send__item">
-            <p className="send__text">Sum</p>
-            <input
-              className="send__input"
-              type="number"
-              value={amountSend}
-              onChange={handleAmountChange}
-              required
-            />            
-          </label>
-					
-          <button type="submit" className="send__button send__button--text">Send</button>
-        </div>
+				<Button
+					text = 'Send'
+					type="submit"
+				/> 	
       </form>
     </div>
   );

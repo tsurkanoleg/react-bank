@@ -1,10 +1,14 @@
 import './index.css';
+import "../../style/authentication.css"
 
 
 // SignUpConfirmPage.js
 import React, { useState } from 'react';
 import { useAuth } from '../../component/AuthContextProvider';
 import BackButton from '../../component/back-button';
+import Field from '../../component/Field';
+import Header from '../../component/Header'
+import Button from "../../component/Button";
 import { useNavigate } from 'react-router-dom';
 import { getTokenSession, saveSession } from '../../script/session';
 
@@ -52,29 +56,30 @@ const SignUpConfirmPage = () => {
   };
 
   return (
-    <div className='signupConfirm__page'>		
+    <div className='authentication__page'>		
 			
-			<BackButton />			
-			
-			<div className="signupConfirm__bord"> 
-				<h2 className='signupConfirm__title'>Confirm account</h2>
-				<p className='signupConfirm__description'>Write the code you received</p>
-			</div>
+			<div className="authentication__header">
+				<BackButton />
+				<Header
+					text='Confirm account'
+					description="Write the code you received"
+				/>
+			</div>			
      
-      <form onSubmit={handleConfirm} className="signupConfirm__block">
+      <form onSubmit={handleConfirm} className="authentication__body">
        
-				<label  className="signupConfirm__code">
-					<p className="signupConfirm__code--title">Confirmation Code:</p>
-					<input 
-						className="signupConfirm__code--input"
-						type="number" 
-						value={code} 
-						onChange={(e) => setcode(e.target.value)} 
-						required 
-					/>
-				</label>
-				<button type="submit" className='signupConfirm__button signupConfirm__button--text'>Confirm</button>
-				
+				<Field
+					text = 'Code:'
+					type = 'number'
+					placeholder="Code"
+					value={code}
+					onChange={(e) => setcode(e.target.value)}	
+				/>
+
+				<Button
+					text="Confirm"
+					type="submit"
+				/>				
       </form>
     </div>
   );

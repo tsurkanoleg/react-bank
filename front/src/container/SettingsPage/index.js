@@ -7,6 +7,10 @@ import { deleteSession, saveSession } from "../../script/session";
 
 import { useNavigate } from 'react-router-dom';
 
+import Field from '../../component/Field';
+import Header from '../../component/Header';
+import Button from "../../component/Button";
+
 const SettingsPage = () => {
 
 	const navigate = useNavigate();
@@ -17,27 +21,18 @@ const SettingsPage = () => {
   const [oldPassword, setOldPassword] = useState('');	
   const [newPassword, setNewPassword] = useState('');
 
-  const [showPassword, setShowPassword] = useState(false);
 	const { dispatch } = useAuth();
 
 	const [alert, setAlert] = useState({
     type: 'disabled',
     message: '',
-  });
-	
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
-
-
-	
+  });	
 
   const handleSubmitEmail = async (e) => {
     e.preventDefault();
 		try { 
 			const session = window.session
-			// saveSession(session)
-
+			
 			// console.log(session, 'path:front/container/settingsPage.32') 
 			const res = await fetch('http://localhost:4000/settings/email', {
 				method: 'POST',
@@ -113,7 +108,9 @@ const SettingsPage = () => {
 		dispatch({type: 'LOGOUT'});
 		window.transactionHistory = null;
 		
-	 	window.location.assign('/');
+	 	// window.location.assign('/');
+
+		navigate('/')
 	}
 
 
@@ -123,91 +120,75 @@ const SettingsPage = () => {
 
 			<header className="settings__header">
 				<BackButton/>
-				<h2>Settings</h2>
-				<div></div>
+				<Header	text='Settings'/>
+				<div style={{width: '24px'}}></div>
 			</header>
-
-
-
 
 
 			<form  onSubmit={handleSubmitEmail} className="settings__change">
 				<span className="settings__change--name ">Change email</span>
-					
-				<label className="settings__change--elem">
-					Email:
-					<input
-						className="settings__change--email"
-						type="email"
-						value={newEmail}
-						onChange={(e) => setNewEmail(e.target.value)}
-						placeholder="example@gmail.com"
-					/>
-				</label>
+							
 
-				<label className="settings__change--elem">
-					Password:
-					<input
-              className="settings__change--password"
-              type={showPassword ? 'text' : 'password'}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-							placeholder="********"
-            />
-						<span onClick={togglePasswordVisibility} 
-							className={`settingsForm__icon toggle-password-button__${showPassword ? 'show' : 'hide'}`} 
-							// role="button"
-						/>
-				</label>					
-				<button type="submit" className="settings__button">Save Email</button>
+				<Field
+					gray
+					text = "Email:"
+					type = "email"
+					placeholder="example@gmail.com"
+					value={newEmail}
+					onChange={(e) => setNewEmail(e.target.value)}
+				/>
+
+				<Field
+					gray
+					text = 'Password:'
+					type = 'password'
+					placeholder="********"
+					value={password}
+					onChange={(e) => setPassword(e.target.value)}	
+				/>
+
+				<Button
+					type="submit"
+					text='Save Email'
+					purple
+				/>				
 			</form>		
-
-
-
-
 
 			<form onSubmit={handleSubmitPassword} className="settings__change">
 				<span className="settings__change--name ">Change email</span> 
-				<label className="settings__change--elem">
-					Old Password:
-					<input
-              className="settings__change--password"
-              type={showPassword ? 'text' : 'password'}
-              value={oldPassword}
-            	onChange={(e) => setOldPassword(e.target.value)}
-              required
-							placeholder="********"
-            />
-						<span onClick={togglePasswordVisibility} 
-							className={`signUpForm__icon toggle-password-button__${showPassword ? 'show' : 'hide'}`} 
-							// role="button"
-						/>
-				</label>
+				
+				<Field
+					gray
+					text = 'Old Password::'
+					type = 'password'
+					placeholder="********"
+					value={oldPassword}
+					onChange={(e) => setOldPassword(e.target.value)}
+				/>
+			
+				<Field
+					gray
+					text = 'New Password:'
+					type = 'password'
+					placeholder="********"
+					value={newPassword}
+					onChange={(e) => setNewPassword(e.target.value)}
+				/>
 
-				<label className="settings__change--elem">
-					New Password:
-					<input
-						className="settings__change--password"
-						type={showPassword ? 'text' : 'password'}
-						value={newPassword}
-						onChange={(e) => setNewPassword(e.target.value)}
-						required
-						placeholder="********"
-					/>
-					<span onClick={togglePasswordVisibility} 
-						className={`signUpForm__icon toggle-password-button__${showPassword ? 'show' : 'hide'}`} 
-						// role="button"
-					/>						
-				</label>
-					
-				<button type="submit" className="settings__button settings__button--text">Save Password</button>
+				<Button
+					type="submit"
+					text='Save Password'
+					purple
+				/>					
+				
 			</form>
 
-
-
+			<Button
+				text='Logout'
+				onClick={logout}
+				red
+			/>      
       
-      <button className="settings__button settings__button--logout" onClick={logout}>Logout</button>
     </div>
   );
 };

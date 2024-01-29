@@ -1,9 +1,13 @@
-import BackButton from "../../component/back-button";
 import "./index.css";
+import "../../style/authentication.css"
 
 // RecoveryPage.js
+import BackButton from "../../component/back-button";
 import { Component } from 'react';
-// import Form from '../../script/'
+import Field from "../../component/Field";
+import Header from '../../component/Header'
+import Button from "../../component/Button";
+
 
 class RecoveryPage extends Component {
   constructor(props) {
@@ -18,9 +22,12 @@ class RecoveryPage extends Component {
   handleChange = (e) => {
     this.setState({ email: e.target.value });
   };
+	
 
   handleSubmit = async (e) => {
     e.preventDefault();
+
+	
 
     const { email, disabled } = this.state;
 
@@ -65,7 +72,8 @@ class RecoveryPage extends Component {
   };
 
   setAlert(type, message) {
-    // Реалізуйте логіку відображення алерту
+		this.setState({ error: message }); 
+
     console.log(`${type}: ${message}`);
   }
 
@@ -75,42 +83,43 @@ class RecoveryPage extends Component {
   }
 
   render() {
-    const { email } = this.state;
+		const { email, error } = this.state;
+
 
     return (
-      <div className="recovery__page">
-        <div className="recovery__top">
+			<div className="authentication__page">
+        <div className="authentication__header">
           <BackButton />
 
-          <div className="recovery__bord">
-            <h2 className="recovery__title">Recover password</h2>
-            <p className="recovery__description">Choose a recovery method</p>
-          </div>
+					<Header
+						text='Recover password'
+						description='Choose a recovery method'
+					/>
+         
         </div>
 
         
-        <form onSubmit={this.handleSubmit}>
-					
-          <label className="recovery__email">
-            <p className="recovery__text">Email:</p>
-            
-            <input
-              className="recovery__layout recovery__input--email"
-              type="email"
-              value={email}
-              onChange={this.handleChange}
-            />
-          </label>
+        <form onSubmit={this.handleSubmit}  className="authentication__body">
+				
+					<Field
+						text = 'Email:'
+						type = 'email'
+						placeholder="Email"
+						value={email}
+						onChange={this.handleChange}		
+					/>
+			
 
-          <br />
-          
-          <button
-            className="recovery__button recovery__button--text"
-            type="submit"
-            disabled={this.state.disabled}
-          >
-            Send code
-          </button>
+					<Button
+						text="Send code"
+						type="submit"
+						disabled={this.state.disabled}
+					/>
+
+					<span className="error-message">
+						{error}
+					</span>
+					
         </form>
       </div>
     );

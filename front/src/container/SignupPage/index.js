@@ -1,12 +1,17 @@
 // SignupPage
 
 import "./index.css";
+import "../../style/authentication.css"
 
 import React, { useState } from 'react';
 import BackButton from "../../component/back-button";
 import { useAuth } from '../../component/AuthContextProvider';
 import { REG_EXP_EMAIL, REG_EXP_PASSWORD } from '../../script/form';
 import { saveSession } from "../../script/session";
+import Field from "../../component/Field";
+import Header from '../../component/Header'
+import Button from "../../component/Button";
+import { useNavigate } from "react-router-dom";
 
  
 const SignUpPage = ({ history }) => {
@@ -15,11 +20,7 @@ const SignUpPage = ({ history }) => {
   const [userExistsMessage, setUserExistsMessage] = useState('');
   const { dispatch } = useAuth();
 
-  const [showPassword, setShowPassword] = useState(false);
-
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
+	const navigate = useNavigate()
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
@@ -50,6 +51,8 @@ const SignUpPage = ({ history }) => {
       body: JSON.stringify({ email, password }),
     });
 
+		
+
     if (response.ok) {
       const data = await response.json();
 
@@ -59,7 +62,8 @@ const SignUpPage = ({ history }) => {
         setUserExistsMessage('');
 
         if (data.url) {
-          window.location.assign(data.url);
+      		navigate(data.url);
+					// window.location.assign(data.url);
         } else {
           try {
             const signupResponse = await fetch('http://localhost:4000/signup', {
@@ -76,6 +80,7 @@ const SignUpPage = ({ history }) => {
               saveSession(signupData.session);
 
               dispatch({ type: 'LOGIN', payload: { token: signupData.token, user: signupData.user } });
+							// navigate('/signup-confirm');
               window.location.assign('/signup-confirm');
             } else {
               const errorData = await signupResponse.json();
@@ -93,47 +98,55 @@ const SignUpPage = ({ history }) => {
   };
 
   return (
-    <div className='signUp__page'>
-      <div className="signUp__top">
+    <div className='authentication__page '>
+      <div className="authentication__header">
         <BackButton />
-        <div className="signUp__bord">
-          <h2 className='signUp__title'>Sign Up</h2>
-          <p className='signUp__description'>Choose a registration method</p>
-        </div>
+				<Header
+					text='Sign Up'
+					description="Choose a registration method"
+				/>
+        
       </div>
-      {userExistsMessage && <p style={{ color: 'red', textAlign: 'center', fontSize: '20px' }}>{userExistsMessage}</p>}
-      <form onSubmit={handleFormSubmit}>
-        <div className='signUpForm__block'>
-          <label className="signUpForm__email">
-            <p className="signUpForm__text">Email:</p>
-            <input
-              className="signUpForm__layout signUpForm__input--email"
-              type="email"
-              value={email}
-              onChange={handleUsernameChange}
-              required
-            />
-          </label>
-          <label className="signUpForm__password">
-            <p className="signUpForm__text">Password:</p>
-            <input
-              className="signUpForm__layout signUpForm__input--password"
-              type={showPassword ? 'text' : 'password'}
-              value={password}
-              onChange={handlePasswordChange}
-              required
-            />
-            <span onClick={togglePasswordVisibility} className={`signUpForm__icon toggle-password-button__${showPassword ? 'show' : 'hide'}`} role="button"></span>
-          </label>
-					<span className="signUpForm__span">
-						Already have an account? 
-						<a href="http://localhost:3000/signin" className="signUpForm__span--href">
-							Sign In
-						</a>
-					</span>
-          <button type="submit" className="signUpForm__button signUpForm__button--text">Sign Up</button>
-        </div>
+      
+
+      <form onSubmit={handleFormSubmit}  className='authentication__body'>
+   
+				<Field
+					text = 'Email:'
+					type = 'email'
+					placeholder="Email"
+					value={email}
+					onChange={handleUsernameChange}		
+				/>
+
+				<Field
+					text = 'Password:'
+					type = 'password'
+					placeholder="Password"
+					value={password}
+					onChange={handlePasswordChange}						
+				/>					
+
+				<span >
+					Already have an account? 
+					<a href="http://localhost:3000/signin" className="href">
+						Sign In
+					</a>
+				</span>
+				<Button
+					type="submit"
+					text="Sign Up"
+				/>        
+
+				{userExistsMessage && 
+					<div className="alert">
+						<p className="alert__text">{userExistsMessage}</p>
+					</div>
+				} 
+       
       </form>
+
+			
     </div>
   );
 };

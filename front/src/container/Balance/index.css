@@ -102,6 +102,16 @@
 .balance__item {
 	display: flex;
 	gap: 12px;
+	cursor: pointer;
+	transition: opacity 0.3s;
+}
+
+.balance__item:hover {
+	opacity: 0.8;
+}
+
+.balance__item:active {
+	opacity: 0.5;
 }
 
 .balance__person {
