@@ -2,8 +2,10 @@ import "./index.css";
 
 import React, { useEffect } from 'react';
 import { Link,  } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const WelcomePage = () => {
+	const navigate = useNavigate()
 	useEffect(() => {
     document.addEventListener("DOMContentLoaded", () => {
 			const token = window.session.token
@@ -11,12 +13,15 @@ const WelcomePage = () => {
 			
       if (token) {  
         if (confirm === true) {
-          window.location.assign('/balance');
+					navigate('/balance')
+          // window.location.assign('/balance');
         } else {
-          window.location.assign('/signup-confirm');
+					navigate('/signup-confirm')
+          // window.location.assign('/signup-confirm');
         }
       } else {
-        window.location.assign('/');
+				navigate('/')
+        // window.location.assign('/');
       }
     });
   }, []);

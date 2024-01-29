@@ -1,174 +1,26 @@
-
-
-.recovery__confirm--page {
-	display: flex;
-	flex-direction: column;
-	gap: 54px;
-}
-
-.recovery__confirm--top {
-	padding: 8px 0 0 20px;
-	display: flex;
-	flex-direction: column;
-	gap: 32px;
-}
-
-.recovery__confirm--bord {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: 12px;
-}
-
-.recovery__confirm--title {
-	color:  #121212;
-	font-family: Jost;
-	font-size: 24px;
-	font-style: normal;
-	font-weight: 500;
-	line-height: 100%; 
-}
-
-.recovery__confirm--description{
-	color:  #939199;
-	text-align: center;
-	font-family: Jost;
-	font-size: 14px;
-	font-style: normal;
-	font-weight: 400;
-	line-height: 100%;
-}
-
-.recovery__confirm--form {
-	display: flex;
-	flex-direction: column;
-	gap: 20px;
-
-	width: 100%;
-	padding: 0 5% 0 5%;
-}
-
-.recovery__confirm--code {
-
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: flex-start;
-	gap: 8px;
-	align-self: stretch;
-
-}
-
-.recovery__confirm--text {
-	color:  #1D1D1F;
-	font-family: Jost;
-	font-size: 14px;
-	font-style: normal;
-	font-weight: 400;
-	line-height: 100%; /* 14px */
-}
-
-.recovery__confirm--layout {
-	display: flex;
-	padding: 20px 16px;
-	align-items: flex-start;
-	gap: 16px;
-	align-self: stretch;
-}
-
-.recovery__confirm--input--code {
-	border-radius: 12px;
-	border: 1px solid  #775CE5;
-}
-
 .form__error {
 	color: red;
 	font-size: 14px;
 }
 
-.recovery__confirm--password {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: flex-start;
-	gap: 8px;
-	align-self: stretch;
-	
-	position: relative;
+.alert--disabled {
+	display: none;
 }
 
-.recovery__confirm--text {
-	color: #1D1D1F;
-	font-family: Jost;
+.alert--error {
 	font-size: 14px;
-	font-style: normal;
-	font-weight: 400;
-	line-height: 100%;
+	border-color: red;
+	color: red;
 }
 
-.recovery__confirm--input--password {
-	border-radius: 12px;
-	border: 1px solid  #E9E8EB;
+.alert--success {
+	font-size: 14px;
+	border-color: green;
+	color: green;
 }
 
-.recovery__confirm--icon {
-	width: 22px;
-	height: 22px;
-	position: absolute;
-	top: calc((100% / 2) - 11px) ;
-	right: 5%;
-}
-
-.toggle-password-button__show {
-	background-image: url(../../../public/svg/password-hide.svg);
-}
-
-.toggle-password-button__hide {
-	background-image: url(../../../public/svg/password-show.svg);
-}
-
-
-
-
-/* .password-input-wrapper {
-	position: relative;
-	width: 100%;
-} */
-
-
-
-
-.recovery__confirm--input--password {
-	padding: 20px 16px;
-
-	border-radius: 12px;
-	border: 1px solid #775CE5;
-}
-
-
-.recovery__confirm--button {
-	
-	margin-left: 5%;
-
-	display: flex;
-	width: 353px;
-	padding: 20px 100px;
-	justify-content: center;
-	align-items: center;
-	gap: 10px;
-
-	border-radius: 12px;
-	background:  #775CE5;
-}
-
-.recovery__confirm--button--text {
-	color: #FFF;
-	text-align: center;
-	font-family: Jost;
-	font-size: 16px;
-	font-style: normal;
-	font-weight: 500;
-	line-height: 100%; 
-
-	white-space: nowrap; 
+.alert--progress {
+	font-size: 14px;
+	border-color: yellow;
+	color: yellow;
 }

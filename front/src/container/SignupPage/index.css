@@ -1,141 +1,4 @@
-.signUp__page {
-	display: flex;
-	flex-direction: column;
-	gap: 54px;
-}
-
-.signUp__top {
-	padding: 20px;
-	display: flex;
-	flex-direction: column;
-	gap: 32px;
-}
-
-.signUp__bord {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: 12px;
-}
-
-.signUp__title {
-	color:  #121212;
-	font-family: Jost;
-	font-size: 24px;
-	font-style: normal;
-	font-weight: 500;
-	line-height: 100%; 
-}
-
-.signUp__description{
-	color:  #939199;
-	text-align: center;
-	font-family: Jost;
-	font-size: 14px;
-	font-style: normal;
-	font-weight: 400;
-	line-height: 100%;
-}
-
-.signUpForm__block{
-	padding: 20px;
-
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	gap: 20px;
-}
-
-.signUpForm__text {
-	color: #1D1D1F;
-	font-family: Jost;
-	font-size: 14px;
-	font-style: normal;
-	font-weight: 400;
-	line-height: 100%; 
-}
-
-.signUpForm__layout {
-	display: flex;
-	
-	align-items: flex-start;
-	gap: 16px;
-	align-self: stretch;
-	
-}
-
-.signUpForm__email {
-
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	gap: 8px;
-	align-self: stretch;
-
-}
-
-.signUpForm__input--email {
-	padding: 20px 16px;
-
-	border-radius: 12px;
-	border: 1px solid #775CE5;
-}
-
-.signUpForm__password {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	gap: 8px;
-	align-self: stretch;
-
-	
-	position: relative;
-}
-
-.password-input-wrapper {
-	position: relative;
-	width: 100%;
-}
-
-.signUpForm__input--password {
-	padding: 20px 16px;
-	
-	border-radius: 12px;
-	border: 1px solid #775CE5;
-
-	width: 100%;
-
-}
-
-.signUpForm__icon {
-	width: 22px;
-	height: 22px;
-
-	text-indent: -9999px;
-
-	position: absolute;
-	top: 50%;
-	right: 15px;
-}
-
-.toggle-password-button__hide {
-	background-image: url(../../../public/svg/password-hide.svg);
-}
-
-.toggle-password-button__show {
-	background-image: url(../../../public/svg/password-show.svg);
-}
-
-.signUpForm__span {
-	color: #1D1D1F;
-	font-family: Jost;
-	font-size: 14px;
-	font-style: normal;
-	font-weight: 400;
-	line-height: 100%; /* 14px */
-}
-
-.signUpForm__span--href {
+.href {
 	padding-left: 5px;
 	color: #775CE5;
 	font-family: Jost;
@@ -146,27 +9,25 @@
 	text-decoration-line: underline;
 }
 
-.signUpForm__button {
+.alert {
+	width: 90%;
 	display: flex;
-	width: 353px;
-	padding: 20px 140px;
+	padding: 16px;
 	justify-content: center;
 	align-items: center;
-	gap: 10px;
+	gap: 8px;
+	align-self: stretch;
 
-	border-radius: 12px;
-	background:  #775CE5;
+	border-radius: 10px;
+	background: rgba(242, 136, 61, 0.10);
 }
 
-.signUpForm__button--text {
-	color: #FFF;
+.alert__text {
+	color: var(--Yellow, #F2883D);
 	text-align: center;
 	font-family: Jost;
-	font-size: 16px;
+	font-size: 14px;
 	font-style: normal;
-	font-weight: 500;
+	font-weight: 400;
 	line-height: 100%; 
 }
-
-
-

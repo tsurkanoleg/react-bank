@@ -2,10 +2,15 @@ import "./index.css";
 
 // ReceivePage.js
 import BackButton from '../../component/back-button';
+import Header from '../../component/Header';
+import Field from "../../component/Field";
+import { useNavigate } from "react-router-dom";
 
 import React, { useState } from 'react';
 
 const ReceivePage = () => {
+	
+	const navigate = useNavigate();
   
   const [amountReceive, setAmountReceive] = useState('');
 	
@@ -34,6 +39,7 @@ const ReceivePage = () => {
 
 			if(res.ok) {
 				window.location.assign(data.redirectUrl)
+				// navigate('/balance')
 				
 			} else {
         console.error('Failed to receive amount:', data.message, 'path: front/component/receive.41');
@@ -51,21 +57,19 @@ const ReceivePage = () => {
 
 			<header className="receive__header">
 				<BackButton/>
-				<h2>Receive</h2>
-				<div></div>
+				<Header	text='Receive'/>
+				<div style={{width: '24px'}}></div>
 			</header>
       
       <form className="receive__change">
-        <label className="receive__change--elem">
-					<span className="receive__text--mini">Receive amount</span>
-          <input					 
-					 className="receive___change--input"
-           type="number"
-					 value={amountReceive}
-					 onChange={handleAmountChange}
-					 required
-          />
-        </label>
+
+			<Field
+					text = 'Receive amount'
+					type = 'number'
+					placeholder="Sum"
+					value={amountReceive}
+					onChange={handleAmountChange}
+				/>        
 
         <div className="receive__buttons">
 					<span className="receive__text--mini">Payment system</span>

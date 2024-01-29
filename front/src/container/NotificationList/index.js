@@ -3,6 +3,7 @@ import "./index.css";
 // NotificationList.js
 import React, {useState, useEffect} from 'react';
 import BackButton from "../../component/back-button";
+import Header from '../../component/Header';
 
 const NotificationList = () => {
 	const [list, setList] = useState([]);
@@ -68,16 +69,15 @@ const NotificationList = () => {
 	if(list.length > 0) {
 		return (
 			<div className="notification__page">
-				<div className="notification__top">
-					<header className="notification__header ">
-						<BackButton/>
-						<h3 onClick={notificationData}>Notifications</h3>
-						<div></div>
-					</header>
-				</div>
-	
-	
-		
+								
+				<header className="notification__header ">
+					<BackButton/>						
+					<div onClick={notificationData}>
+						<Header	text='Notifications'	/>
+					</div>
+					<div style={{width: '24px'}}></div>
+				</header>	
+				
 				<div className="notification__content" >
 				{list.sort((a, b) => new Date(b.time) - new Date(a.time))
 				.map((notification) => (

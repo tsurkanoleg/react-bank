@@ -75,7 +75,7 @@
 	gap: 12px;
 }
 
-.welcome__button{
+.welcome__button {
 	display: flex;
 	padding: 20px 140px;
 	justify-content: center;
@@ -87,6 +87,16 @@
 	border-radius: 12px;
 	color: #775CE5;
 	z-index: 9999;
+
+	transition: opacity 0.3s;
+}
+
+.welcome__button:hover {
+	opacity: 0.7;
+}
+
+.welcome__button:active {
+	opacity: 0.5;
 }
 
 .welcome__button--up{

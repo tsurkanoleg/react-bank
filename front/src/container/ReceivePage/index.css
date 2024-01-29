@@ -3,6 +3,7 @@
 	display: flex;
 	flex-direction: column;
 	gap: 40px;
+	padding-top: 66px;
 }
 
 .receive__header {
@@ -16,7 +17,7 @@
 	font-size: 20px;
 	font-style: normal;
 	font-weight: 500;
-	line-height: 100%; /* 20px */
+	line-height: 100%; 
 }
 
 .receive__change {
@@ -26,36 +27,6 @@
 	gap: 20px;
 }
 
-.receive__change--elem {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	gap: 12px;
-
-	width: 100%;
-}
-
-.receive__text--mini {
-	color: #000;
-	text-align: center;
-	font-family: Jost;
-	font-size: 16px;
-	font-style: normal;
-	font-weight: 500;
-	line-height: 100%; /* 16px */
-}
-
-.receive___change--input {
-	display: flex;
-	padding: 20px 16px;
-	align-items: flex-start;
-	gap: 16px;
-	align-self: stretch;
-
-	border-radius: 12px;
-	border: 1px solid  #E9E8EB;
-	background: #FFF;
-}
 
 .receive__buttons{
 	display: flex;
