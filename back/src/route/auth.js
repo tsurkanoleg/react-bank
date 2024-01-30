@@ -257,7 +257,7 @@ router.post('/recovery-confirm', function (req, res) {
 
 router.post('/signin', function (req, res) {
   const { email, password, session } = req.body
-	// console.log(email, password, session)
+	console.log(email, password, session)
 
   if (!email || !password) {
     return res.status(400).json({
@@ -266,6 +266,7 @@ router.post('/signin', function (req, res) {
   }
 
 	const user = User.getByEmail(String(email))
+	console.log(user, 'user==============')
 
   try {
 
@@ -290,7 +291,7 @@ router.post('/signin', function (req, res) {
 
 			const code = Confirm.create({ email })	
 
-			// console.log( code, 'confirmCode============')	
+			console.log( code, 'confirmCode============')	
 
 			
 
@@ -320,7 +321,35 @@ router.post('/signin', function (req, res) {
 				message: 'Ви увійшли',
 				session,
 			})
-		}			
+		}	else if(session) {
+			const session = Session.create(user)
+
+			const code = Confirm.create({ email })	
+
+			console.log( code, 'confirmCode============')	
+
+			
+
+			let userNotification = Notification.getNotificationByUser(email);
+			
+			if (!userNotification) {
+				userNotification = Notification.create(email);	
+				// console.log(userNotification, 'Create new account notification');				
+			}
+			
+
+			const newNotification = userNotification.addNotification('Ви увійшли в систему','login')
+			// console.log(newNotification, 'New notification');
+
+
+				
+			return res.status(200).json({
+				message: 'Ви увійшли',
+				session,
+				code,
+				newNotification,
+			})
+		}
 		
   } catch (err) {
     return res.status(400).json({
